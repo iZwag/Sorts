@@ -29,8 +29,7 @@ int main(int argc, char* argv[])
       
       while( (i>0) && (arr[i])>key)
       {
-         arr[i + 1] = arr[i];
-         i -= 1;
+         arr[i + 1] = arr[i--];
       }
          
       arr[i+1] = key;          
