@@ -2,5 +2,5 @@
 
 My attempt on decently efficient implementations of common sorts in C.
 
-[] Insertion sort
-[] Merge
+- [ ] Insertion sort
+- [ ] Merge
