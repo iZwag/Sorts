@@ -1,2 +1,6 @@
-# Sort it out!
-The most insanely efficient run-time sorting algorithms,  4ur3yes0nly. \hashtag lessthanthree
+# Sorts implemented in C
+
+My attempt on decently efficient implementations of common sorts in C.
+
+[] Insertion sort
+[] Merge
