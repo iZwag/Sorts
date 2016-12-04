@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void merge_sort(uint16_t list[]);
+void merge_sort(void);
 
 #endif
