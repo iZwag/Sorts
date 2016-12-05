@@ -11,8 +11,8 @@
  *    size - Number of elements in the list.                                                                            
  *****************************************************************************/
 
-#ifndef MERGE_H
-#define MERGE_H
+#ifndef MERGE_SORT_H
+#define MERGE_SORT_H
 
 #include <stdio.h>
 #include <stdint.h>

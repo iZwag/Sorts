@@ -1,4 +1,4 @@
-#include "merge.h"
+#include "merge_sort.h"
 
 void split(uint16_t* list, uint16_t f_element, uint16_t l_element);
 void merge(uint16_t* list, uint16_t f_element, uint16_t m_element, uint16_t l_element);
