@@ -1,5 +1,7 @@
 /* ***************************************************************************
  * QUICK SORT
+ * - In-place (Memory requirements same as original data structure)
+ * - O(n lg n) runtime in practice for average cases
  *
  * Programmed by Jon Zwaig Kolstad, February 2017
  *
