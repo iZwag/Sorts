@@ -2,8 +2,9 @@
  * QUICK SORT
  * - In-place (Memory requirements same as original data structure)
  * - O(n lg n) runtime in practice for average cases
+ * - Uses a random partitioning when finding pivot
  *
- * Programmed by Jon Zwaig Kolstad, February 2017
+ * Programmed by Jon Zwaig Kolstad, March 2017
  *
  * Parameters:
  *    list - Array-list of unsigned integers.

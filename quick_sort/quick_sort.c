@@ -1,66 +1,80 @@
 #include "quick_sort.h"
+
 #include <time.h>
 #include <stdlib.h>
 
-void split(uint16_t* list, uint16_t f_element, uint16_t l_element);
-uint16_t partition(uint16_t* list, uint16_t f_element, uint16_t l_element);
-uint16_t r_partition(uint16_t* list, uint16_t f_element, uint16_t l_element);
+void                split (uint16_t* list, uint16_t f_index, uint16_t l_index);
+uint16_t        partition (uint16_t* list, uint16_t f_index, uint16_t l_index);
+uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index);
 
-/* API FUNCTIONS */
+void swap (uint16_t *a, uint16_t *b);
+
+/*****************************************************************************/
+/*                              API FUNCTIONS                                */
+/*****************************************************************************/
 
 void quick_sort(uint16_t* list, uint16_t size)
 {
-   split(list, 1, size-1);
+   // Initial random numbers seed
+   srand(time(NULL));
+
+   // Initial split, then recurisively splits and sorts
+   split(list, 0, size-1);
 }
 
-/* LOCAL FUNCTIONS */
+/*****************************************************************************/
+/*                             LOCAL FUNCTIONS                               */
+/*****************************************************************************/
 
-void split(uint16_t* list, uint16_t f_element, uint16_t l_element)
+void split(uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    uint16_t divider;
 
-   if(f_element < l_element){
-      divider = r_partition(list, f_element, l_element);
-      split(list, f_element, divider-1);
-      split(list, divider+1, l_element);
+   if(f_index < l_index){
+
+      divider = random_partition(list, f_index, l_index);
+      split(list, f_index, divider - 1);
+      split(list, divider + 1, l_index);
+
    }
 }
 
-uint16_t partition(uint16_t* list, uint16_t f_element, uint16_t l_element)
+uint16_t partition(uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    uint16_t pivot, temp, i, j;
 
-   pivot = list[l_element];
-   i = f_element - 1;
+   pivot = list[l_index];
+   i = f_index - 1;
 
-   for(j = f_element; j <= (l_element - 1); j++){
+   for(j = f_index; j <= (l_index - 1); j++){
 
       if(list[j] <= pivot){
+
          i++;
-         temp = list[j];
-         list[j] = list[i];
-         list[i] = temp;
+         swap(&list[i], &list[j]);
+
       }
    }
 
-   temp = list[l_element];
-   list[l_element] = list[i + 1];
-   list[i + 1] = temp;
+   swap(&list[l_index], &list[i + 1]);
 
    return (i + 1);
 }
 
-uint16_t r_partition(uint16_t* list, uint16_t f_element, uint16_t l_element)
+uint16_t random_partition(uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
-   uint16_t r_element, temp;
+   uint16_t r_index, temp;
 
-   srand(time(NULL));
+   r_index = (rand() % ((l_index - f_index) + 1)) + f_index;
+   swap(&list[l_index], &list[r_index]);
 
-   r_element = (rand() % ((l_element - f_element) + 1)) + f_element;
-   temp = list[r_element];
-   list[r_element] = list[l_element];
-   list[l_element] = temp;
-
-   return partition(list, f_element, l_element);
+   return partition(list, f_index, l_index);
 }
 
+// Good
+void swap(uint16_t *a, uint16_t *b)
+{
+   uint16_t temp = *a;
+   *a = *b;
+   *b = temp;
+}
