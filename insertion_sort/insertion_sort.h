@@ -1,5 +1,9 @@
 /******************************************************************************
  * INSERTION SORT
+ * - In-place (Memory requirements same as original data structure)
+ * - Simple to understand
+ * - Sometimes good in practice on small lists
+ * - Bad complexity: O(n^2)
  * 
  * ****************************************************************************
  * Programmed by Jon Zwaig Kolstad, July 2015
