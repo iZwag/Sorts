@@ -1,8 +1,8 @@
 #include "merge_sort.h"
 
-void split(uint16_t* list, uint16_t f_index, uint16_t l_index);
-void merge(uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index);
-uint16_t middle_element(uint16_t first, uint16_t last);
+static void     split  (uint16_t* list, uint16_t f_index, uint16_t l_index);
+static void     merge  (uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index);
+static uint16_t middle (uint16_t first, uint16_t last);
 
 /*****************************************************************************/
 /*                              API FUNCTIONS                                */
@@ -17,16 +17,16 @@ void merge_sort(uint16_t* list, uint16_t size)
 /*                             LOCAL FUNCTIONS                               */
 /*****************************************************************************/
 
-void split(uint16_t* list, uint16_t f_index, uint16_t l_index)
+static void split(uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    if(f_index < l_index){
-      split(list, f_index, middle_element(f_index, l_index));
-      split(list, middle_element(f_index, l_index) + 1, l_index);
-      merge(list, f_index, middle_element(f_index, l_index), l_index);
+      split(list, f_index, middle(f_index, l_index));
+      split(list, middle(f_index, l_index) + 1, l_index);
+      merge(list, f_index, middle(f_index, l_index), l_index);
    }
 }
 
-void merge(uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index)
+static void merge(uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index)
 {
    uint16_t left_list  [(m_index - f_index + 1) + 1];
    uint16_t right_list [(l_index - m_index) + 1];
@@ -39,8 +39,8 @@ void merge(uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index)
       right_list[j] = list[m_index + j];
    }
 
-   left_list[(m_index - f_index + 1) + 1] = 0xFFFF;
-   right_list[(l_index - m_index) + 1] = 0xFFFF;
+   left_list [(m_index - f_index + 1) + 1] = UINT16_MAX;
+   right_list[(l_index - m_index)     + 1] = UINT16_MAX;
 
    i = j = 1;
 
@@ -56,7 +56,7 @@ void merge(uint16_t* list, uint16_t f_index, uint16_t m_index, uint16_t l_index)
    }
 }
 
-uint16_t middle_element(uint16_t first, uint16_t last)
+static uint16_t middle(uint16_t first, uint16_t last)
 {
    return ( (first + last)/2 ); 
 }
