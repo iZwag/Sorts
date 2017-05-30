@@ -3,11 +3,11 @@
 #include <time.h>
 #include <stdlib.h>
 
-void                 sort (uint16_t* list, uint16_t f_index, uint16_t l_index);
-uint16_t        partition (uint16_t* list, uint16_t f_index, uint16_t l_index);
-uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index);
+static void     swap             (uint16_t* a, uint16_t* b);
+static void     sort             (uint16_t* list, uint16_t f_index, uint16_t l_index);
+static uint16_t partition        (uint16_t* list, uint16_t f_index, uint16_t l_index);
+static uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index);
 
-void swap (uint16_t* a, uint16_t* b);
 
 /*****************************************************************************/
 /*                              API FUNCTIONS                                */
@@ -15,10 +15,10 @@ void swap (uint16_t* a, uint16_t* b);
 
 void quick_sort (uint16_t* list, uint16_t size)
 {
-   // Initial random numbers seed
+   /* Initial random numbers seed */
    srand(time(NULL));
 
-   // Initializes sort, then recurisively splits and sorts
+   /* Initializes sort, then recurisively splits and sorts */
    sort(list, 0, size-1);
 }
 
@@ -26,7 +26,7 @@ void quick_sort (uint16_t* list, uint16_t size)
 /*                             LOCAL FUNCTIONS                               */
 /*****************************************************************************/
 
-void sort (uint16_t* list, uint16_t f_index, uint16_t l_index)
+static void sort (uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    if(f_index < l_index) {
 
@@ -40,7 +40,7 @@ void sort (uint16_t* list, uint16_t f_index, uint16_t l_index)
    }
 }
 
-uint16_t partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
+static uint16_t partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    uint16_t pivot, i, j;
 
@@ -48,7 +48,7 @@ uint16_t partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
    i = f_index - 1;
 
    for(j = f_index; j < l_index; j++) {
-      // Change to '>' for decreasing order sorting
+      /* Change to '>' for decreasing order sorting */
       if(list[j] <= pivot) {
 
          i++;
@@ -63,7 +63,7 @@ uint16_t partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
    return i;
 }
 
-uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
+static uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
 {
    uint16_t r_index;
 
@@ -73,7 +73,7 @@ uint16_t random_partition (uint16_t* list, uint16_t f_index, uint16_t l_index)
    return partition(list, f_index, l_index);
 }
 
-void swap (uint16_t* a, uint16_t* b)
+static void swap (uint16_t* a, uint16_t* b)
 {
    uint16_t temp = *a;
    *a = *b;
